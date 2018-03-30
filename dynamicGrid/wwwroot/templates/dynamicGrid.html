@@ -1,0 +1,41 @@
+﻿<div>
+    <div ng-if="hasData">
+        <table ng-class="gridTableClass">
+            <thead>
+                <tr ng-class="gridHeaderRowClass">
+                    <th ng-class="gridHeaderItemClass" ng-repeat="item in gridTable.columns">{{item}}</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr ng-if="gridTable.totalPages > 1" ng-class="gridFooterRowClass">
+                    <td colspan="999">
+                        <div style="display: inline-block; margin: auto auto;">
+                            <span style="cursor: pointer;" ng-click="changeToFirstPage()" ng-if="gridTable.currentPage - 1 >= 0">|&lt;</span>
+                            <span style="cursor: pointer;" ng-click="changePage(-1)" ng-if="gridTable.currentPage - 1 >= 0">&lt;</span>
+                            <span><strong>Page:</strong>&nbsp;{{ gridTable.currentPage + 1 }}/{{ gridTable.totalPages }}</span>
+                            <span style="cursor: pointer;" ng-click="changePage(1)" ng-if="gridTable.currentPage + 1 < gridTable.totalPages">&gt;</span>
+                            <span style="cursor: pointer;" ng-click="changeToLastPage()" ng-if="gridTable.currentPage + 1 < gridTable.totalPages">&gt;|</span>
+                            <span>Total Records: {{gridTable.totalItems}}</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-if="gridTable.totalPages < 2" ng-class="gridFooterRowClass">
+                    <td colspan="999">
+                        <div style="display: inline-block; margin: auto auto;">
+                            <span><strong>Page:</strong>&nbsp;{{ gridTable.currentPage + 1 }}/{{ gridTable.totalPages }}</span>
+                            <span><strong>Total Records:</strong>&nbsp;{{gridTable.totalItems}}</span>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr ng-class="gridDataRowClass" ng-repeat="row in gridTable.displayRows">
+                    <td ng-class="gridDataItemClass" ng-repeat="col in gridTable.columns">{{row[col]}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-if="!hasData">
+        <span ng-class="gridNoDataClass">{{gridNoDataMessage}}</span>
+    </div>
+</div>

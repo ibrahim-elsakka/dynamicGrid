@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - dynamicGrid</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+</head>
+<body>
+    <div ng-app="app" ng-controller="home">
+        <div>
+            <label for="dataType">Data Source:&nbsp;</label>
+            <input type="radio" ng-model="dataType" value="0" id="dataType1" name="dataType" />&nbsp;Table
+            <input type="radio" ng-model="dataType" value="1" id="dataType2" name="dataType" />&nbsp;Object
+            <input type="radio" ng-model="dataType" value="2" id="dataType2" name="dataType" />&nbsp;Array
+            &nbsp;&nbsp;&nbsp;
+            <label for="pageSize">Page Size:&nbsp;</label>
+            <select name="pageSize" id="pageSize" ng-model="pageSize">
+                <option value="-1">All</option>
+                <option>5</option>
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+                <option>100</option>
+            </select>
+            &nbsp;&nbsp;&nbsp;<button ng-click="getData()">Refresh Data</button>
+        </div>
+        <br />
+        <dynamic-grid ng-if="dataResult"
+                      grid-no-data-class="grid-no-data"
+                      grid-data="dataResult"
+                      grid-page-size="pageSize"
+                      grid-table-class="grid-table"
+                      grid-header-row-class="grid-table-header-row"
+                      grid-header-item-class="grid-table-header-item"
+                      grid-data-row-class="grid-table-data-row"
+                      grid-Data-item-class="grid-table-data-item"
+                      grid-footer-row-class="grid-table-footer-row"></dynamic-grid>
+        @RenderBody()
+    </div>
+    <environment include="Development">
+        <script src="https://code.angularjs.org/1.6.9/angular.min.js"
+                asp-fallback-src="~/lib/angularjs/angular.min.js"
+                asp-fallback-test="window.angular"
+                crossorigin="anonymous">
+        </script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/dynamicGrid/dynamicGrid.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://code.angularjs.org/1.6.9/angular.min.js"
+                asp-fallback-src="~/lib/angularjs/angular.min.js"
+                asp-fallback-test="window.angular"
+                crossorigin="anonymous">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/dynamicGrid/dynamicGrid.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

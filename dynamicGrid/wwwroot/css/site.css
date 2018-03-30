@@ -1,0 +1,70 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+.grid-no-data {
+    margin: auto, auto;
+    font-weight: bold;
+}
+
+.grid-table {
+    width: 100%;
+}
+
+.grid-table-header-row {
+    font-weight: bold;
+    vertical-align: bottom;
+}
+.grid-table-header-item {
+    border-bottom: 1px solid #999;
+    padding: 4px 10px 4px 5px;
+    text-align: center;
+}
+.grid-table-data-row:nth-child(even) {
+    background-color: #ccc;
+}
+.grid-table-data-row:nth-child(odd) {
+    background-color: transparent;
+}
+.grid-table-data-item {
+    padding: 4px 10px 4px 5px;
+    padding-left: 15px;
+    text-align: center;
+}
+.grid-table-footer-row {
+    font-weight: bold;
+    vertical-align: bottom;
+    text-align: center;
+}
