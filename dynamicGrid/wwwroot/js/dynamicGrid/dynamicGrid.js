@@ -81,23 +81,27 @@ function dynamicGridController($scope) {
         return table;
     }
 
-    function changeToFirstPage() {
-        let table = $scope.gridTable;
+    function changeToFirstPage(table) {
+        if (table === null || table === undefined) {
+            table = $scope.gridTable;
+        }
         table.currentPage = 0;
         $scope.gridTable = updateTableDisplay($scope.gridTable);
     }
 
-    function changeToLastPage() {
-        let table = $scope.gridTable;
-        table.currentPage = table.totalPages;
+    function changeToLastPage(table) {
+        if (table === null || table === undefined) {
+            table = $scope.gridTable;
+        }
+        table.currentPage = table.totalPages - 1;
         $scope.gridTable = updateTableDisplay($scope.gridTable);
     }
 
     function changePage(increment) {
         let table = $scope.gridTable;
         table.currentPage += increment;
-        if (table.currentPage < 0) table.currentPage = 0;
-        if (table.currentPage >= table.totalPages) table.currentPage = table.totalPages;
+        if (table.currentPage < 0) return changeToFirstPage(table);
+        if (table.currentPage >= table.totalPages) return changeToLastPage(table);
         $scope.gridTable = updateTableDisplay($scope.gridTable);
     }
 
